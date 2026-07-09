@@ -25,6 +25,11 @@ class Rect():
         self.top = self.y
         self.bottom = self.y+self.h
 
+    def colliderect(self,rect):
+        if rect.right > self.left and rect.left < self.right and self.top < rect.bottom and self.bottom > rect.top:
+            return True
+        return False
+
     def update(self):
         self.left = self.x
         self.right = self.x+self.w
@@ -52,8 +57,8 @@ while running:
     mouse = pygame.mouse.get_pos()
     rect1.x = mouse[0]
     rect1.y = mouse[1]
-
-    if rect2.right > rect1.left and rect2.left < rect1.right and rect1.top < rect2.bottom and rect1.bottom > rect2.top:
+   
+    if rect1.colliderect(rect2):
         color = (0,255,0)
     else:
         color = Color.RED
