@@ -7,19 +7,7 @@ HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-running = True
 
-# way1
-rect1 = [100,100,50,50]
-
-
-# way2
-rect1_x = 100
-rect1_y = 100
-rect1_w = 50
-rect1_h = 50
-
-# way 3
 class Rect():
     def __init__(self,x,y,w,h):
         self.x = x
@@ -27,16 +15,25 @@ class Rect():
         self.w = w
         self.h = h
 
-rect1 = Rect(100,100,50,50)
+rect1 = Rect(150,100,50,50)
+rect2 = Rect(100,100,50,50)
 
 # game loop
+running = True
 while running:
     screen.fill((0,0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    pygame.draw.rect(screen,(255,0,0),(rect1.x,rect1.y,rect1.w,rect1.h))
+    pygame.draw.rect(screen,(255,255,0),(rect2.x,rect2.y,rect2.w,rect2.h))
+
+
+    # logic
     mouse = pygame.mouse.get_pos()
-    pygame.draw.rect(screen,(255,255,0),(mouse[0],mouse[1],50,50))
+    rect1.x = mouse[0]
+    rect1.y = mouse[1]
     
     pygame.display.update()
 
